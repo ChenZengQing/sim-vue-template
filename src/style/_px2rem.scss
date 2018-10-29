@@ -1,0 +1,4 @@
+@function px2rem( $px ){
+    @return $px*750/$designWidth/20 + rem; //这句是不是感觉很熟悉 这句其实跟上面的那段js是对应的
+}
+$designWidth : 750; //如设计图是750
