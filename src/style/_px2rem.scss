@@ -1,4 +1,11 @@
-@function px2rem( $px ){
-    @return $px*750/$designWidth/20 + rem; //这句是不是感觉很熟悉 这句其实跟上面的那段js是对应的
+//  设置基数为 37.5 （设计稿宽度/10）
+$browser-default-font-size: 37.5px !default;
+
+@function px2rem($px){//$px为需要转换的字号
+    @if (unitless($px)) {
+        @return px2rem($px + 0px);
+    }@else if (unit($px) == em) {
+        @return $px;
+    }
+    @return ($px / $browser-default-font-size) * 1rem;
 }
-$designWidth : 750; //如设计图是750

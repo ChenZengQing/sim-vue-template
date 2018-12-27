@@ -1,7 +1,7 @@
 {
-  "name": "logistics-h5",
+  "name": "keep-car",
   "version": "1.0.0",
-  "description": "物流 H5",
+  "description": "养车家",
   "author": "chenzengqing <chenzengqing@git.9tong.com>",
   "private": true,
   "scripts": {
@@ -13,10 +13,16 @@
   "dependencies": {
     "axios": "^0.18.0",
     "es6-promise": "^4.2.4",
+    "js-cookie": "2.2.0",
     "mint-ui": "^2.2.13",
+    "normalize.css": "7.0.0",
     "npm": "^6.1.0",
+    "nprogress": "0.2.0",
+    "path-to-regexp": "^2.4.0",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "3.0.1",
+    "weixin-js-sdk": "^1.4.0-test"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

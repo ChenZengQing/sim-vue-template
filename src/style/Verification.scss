@@ -1,0 +1,15 @@
+@import 'px2rem.scss';
+
+.verification {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    position: relative;
+    margin-bottom: px2rem(65);
+    span {
+        position: absolute;
+        bottom: 0;
+    }
+
+}

@@ -1,0 +1,141 @@
+/* 覆盖mint-ui的primary颜色，改为自己UI的主题色 */
+$color-primary: #FF7817;
+
+@import 'px2rem.scss';
+
+.mint-header {
+    background-color: $color-primary;
+}
+.mint-button:not(.is-disabled):active::after {
+    opacity: .2 /* .6 */
+}
+.mint-button--primary {
+    background-color: $color-primary;
+}
+.mint-button--primary.is-plain {
+    border: 1px solid $color-primary;
+    color: $color-primary
+}
+.mint-badge.is-primary {
+    background-color: $color-primary
+}
+.mint-switch-input:checked + .mint-switch-core {
+    border-color: $color-primary;
+    background-color: $color-primary;
+}
+.mint-navbar .mint-tab-item.is-selected {
+    border-bottom: 3px solid $color-primary;
+    color: $color-primary;
+}
+.mint-tabbar > .mint-tab-item.is-selected {
+    color: $color-primary;
+}
+.mint-searchbar-cancel {
+    color: $color-primary;
+}
+.mint-checkbox-input:checked + .mint-checkbox-core {
+    background-color: $color-primary;
+    border-color: $color-primary;
+}
+.mint-radio-input:checked + .mint-radio-core {
+    background-color: $color-primary;
+    border-color: $color-primary;
+}
+.mt-range-progress {
+    background-color: $color-primary;
+}
+.mt-progress-progress {
+    background-color: $color-primary;
+}
+.mint-msgbox-confirm {
+    color: $color-primary;
+}
+.mint-msgbox-confirm:active {
+    color: $color-primary;
+}
+.mint-datetime-action {
+    color: $color-primary;
+}
+
+
+.mint-msgbox {
+    font-size: px2rem(34);
+}
+.mint-msgbox-title {
+    font-size: px2rem(34);
+}
+.mint-msgbox-btns {
+    height: px2rem(70);
+}
+.mint-msgbox-btns button{
+    font-size: px2rem(34);
+    height: px2rem(70);
+}
+.mint-toast {
+    border-radius: px2rem(5);
+
+
+}
+.mint-toast-text {
+    font-size: px2rem(30);
+    margin: px2rem(10);
+}
+
+.mint-button--normal {
+    padding: 0 px2rem(30);
+}
+.mint-button {
+    border-radius: px2rem(6);
+    font-size: px2rem(20);
+    height: px2rem(40);
+}
+.mint-indicator {
+    .mint-indicator-wrapper {
+        padding: px2rem(20)!important;
+        border-radius: px2rem(8);
+        .mint-spinner-snake {
+            width: px2rem(60)!important;
+            height: px2rem(60)!important;
+        }
+        .mint-indicator-text {
+            font-size: px2rem(20);
+            margin-top: px2rem(30);
+        }
+    }
+
+}
+.mint-tabbar {
+    background: rgba(255,255,255,0.90);
+    box-shadow: inset 0 0 0 0 rgba(0,0,0,0.25);
+    border-top: 1px solid #D3D3D3;
+    .mint-tab-item {
+        padding: px2rem(10) 0;
+        color: #848484;
+        .mint-tab-item-icon {
+            width: px2rem(48);
+            height: px2rem(34);
+        }
+        .mint-tab-item-label {
+            font-size: px2rem(10);
+            font-family: PingFangSC-Regular;
+
+            letter-spacing: px2rem(0.12);
+            text-align: center;
+        }
+    }
+
+}
+
+.mint-tabbar > .mint-tab-item.is-selected {
+    background: rgba(255,255,255,0.90);
+}
+
+
+
+.empty {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
