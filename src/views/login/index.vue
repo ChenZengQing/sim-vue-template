@@ -16,8 +16,6 @@
 
             <mt-button type="primary" @click.native="submitLogin">登录</mt-button>
             <router-link class="forgot-pass" :to="{name:'ForGet'}">找回密码</router-link>
-            <!--<router-link :to=""></router-link>-->
-            <!--<span class="forgot-pass" @click="handleClick">找回密码</span>-->
         </div>
         <span class="bottom-text">养车一站到家</span>
     </div>

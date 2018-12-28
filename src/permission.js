@@ -2,6 +2,7 @@ import router from './router'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css'// progress bar style
 import {getToken} from '@/utils/auth' // getToken from cookie
+import store from './store'
 
 NProgress.configure({showSpinner: false});// NProgress Configuration
 
@@ -13,6 +14,10 @@ router.beforeEach((to, from, next) => {
     /* 路由发生变化修改页面title */
     if (to.meta.title) {
         document.title = to.meta.title;
+    }
+    /* 路由发生变化同步底部 Tab */
+    if (to.meta.tabIndex !== store.getters.selected && to.meta.tabIndex !== undefined) {
+        store.dispatch('ChangeTab', to.meta.tabIndex);
     }
 
     if (getToken()) { // determine if there has token

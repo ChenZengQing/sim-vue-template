@@ -130,6 +130,60 @@ $color-primary: #FF7817;
     background: rgba(255,255,255,0.90);
 }
 
+.picker-toolbar {
+    height: px2rem(40);
+}
+
+.mint-datetime-action {
+    line-height: px2rem(40);
+    font-size: px2rem(16);
+}
+.picker-slot {
+    font-size: px2rem(16);
+
+}
+//.picker-items {
+//    height: 40vh;
+//}
+//.picker-item {
+//    height: px2rem(30)!important;
+//    line-height: px2rem(30)!important;
+//}
+//.picker-center-highlight {
+//    background: #FF7817;
+//    height: px2rem(40)!important;
+//    opacity: 0.5;
+//}
+//.picker-slot-wrapper {
+//    //height: px2rem(100)!important;
+//    //transform: translate(0px, px2rem(50)) translateZ(0px)!important;
+//    background: #FF7817;
+//}
+
+/*--------选择器样式-----------*/
+.picker-items{
+    height:100%;
+}
+.picker-item{
+    font-size:0.4rem;
+    //height: px2rem(40)!important;
+    //line-height: px2rem(40)!important;
+}
+.picker-slot-center{
+    height:100%;
+}
+.picker-slot-wrapper{
+}
+.picker-center-highlight{
+    background-color: #F5F5F9;
+    z-index:-100;
+}
+
+
+
+
+
+
 
 
 .empty {

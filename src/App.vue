@@ -36,7 +36,7 @@
         },
         created() {
             this.$store.dispatch('SetTabs', this.tabs);
-            this.$store.dispatch('ChangeTab', 0);
+            // this.$store.dispatch('ChangeTab', 0);
 
         },
     }

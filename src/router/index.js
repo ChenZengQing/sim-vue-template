@@ -6,6 +6,9 @@ import ForGet from '@/views/login/forget'
 import Layout from '@/views/layout/index'
 import Verification from '@/views/verification/index'
 import User from '@/views/user/index'
+import StoreInfo from '@/views/user/StoreInfo'
+import CapitalList from '@/views/user/CapitalList'
+import CapitalDetail from '@/views/user/CapitalDetail'
 
 Vue.use(Router);
 
@@ -22,7 +25,8 @@ export default new Router({
                     name: 'Home',
                     component: Home,
                     meta: {
-                        title: '兑换券核销'
+                        title: '兑换券核销',
+                        tabIndex: 0,
                     }
                 },
                 {
@@ -30,7 +34,8 @@ export default new Router({
                     name: 'Verification',
                     component: Verification,
                     meta: {
-                        title: '核销记录'
+                        title: '核销记录',
+                        tabIndex: 1,
                     }
                 },
                 {
@@ -38,7 +43,8 @@ export default new Router({
                     name: 'User',
                     component: User,
                     meta: {
-                        title: '我的'
+                        title: '我的',
+                        tabIndex: 2,
                     }
                 },
 
@@ -55,6 +61,30 @@ export default new Router({
             component: ForGet,
             meta: {
                 title: '找回密码'
+            }
+        },
+        {
+            path: '/storeInfo',
+            name: 'StoreInfo',
+            component: StoreInfo,
+            meta: {
+                title: '店铺资料'
+            }
+        },
+        {
+            path: '/capitalList',
+            name: 'CapitalList',
+            component: CapitalList,
+            meta: {
+                title: '资金流水'
+            }
+        },
+        {
+            path: '/capitalDetail',
+            name: 'CapitalDetail',
+            component: CapitalDetail,
+            meta: {
+                title: '流水详情'
             }
         },
 

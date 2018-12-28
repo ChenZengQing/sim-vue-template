@@ -7,9 +7,140 @@
     width: 100%;
     position: relative;
     margin-bottom: px2rem(65);
-    span {
+    .top-box {
+        background: #F0F0F0;
+        box-shadow: 0 0 0 0 #E3E3E3;
+        height: px2rem(46);
+        display: flex;
+        align-items: center;
+        .label {
+            font-family: PingFangSC-Medium;
+            font-size: px2rem(16);
+            color: #353535;
+            letter-spacing: px2rem(0.19);
+            margin-left: px2rem(15);
+            display: block;
+            flex: 1;
+        }
+        .filter-btn {
+            font-family: PingFangSC-Regular;
+            font-size: px2rem(16);
+            color: #848484;
+            letter-spacing: px2rem(0.19);
+            margin-right: px2rem(14);
+            display: flex;
+            align-items: center;
+            img {
+                width: px2rem(16);
+                height: px2rem(16);
+                margin-left: px2rem(7);
+            }
+        }
+    }
+    .list-container {
+        flex: 1;
+        overflow-y: auto;
+        position: relative;
+        padding-left: px2rem(15);
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            li {
+                border-bottom: 1px solid #E3E3E3;
+                height: px2rem(60);
+                display: flex;
+                align-items: center;
+                padding-right: px2rem(15);
+                font-family: PingFangSC-Regular;
+
+                .item-left {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    .code {
+                        font-size: px2rem(18);
+                        color: #353535;
+                        letter-spacing: px2rem(0.22);
+                    }
+                    .time {
+                        font-size: px2rem(11);
+                        color: #848484;
+                        letter-spacing: px2rem(0.13);
+                    }
+                }
+                .item-right {
+                    .type {
+                        font-size: px2rem(16);
+                        color: #000000;
+                        letter-spacing: px2rem(0.19);
+                    }
+                }
+            }
+            li:last-child {
+                border: none;
+            }
+        }
+
+    }
+    .filter-box {
         position: absolute;
-        bottom: 0;
+        width: 100%;
+        background: #FFFFFF;
+        top: px2rem(46);
+        left: 0;
+        z-index: 999;
+        .filter-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0 px2rem(15);
+            .title-box {
+                margin-top: px2rem(11);
+                font-family: PingFangSC-Regular;
+                font-size: px2rem(14);
+                letter-spacing: px2rem(0.17);
+                line-height: px2rem(18);
+                .title {
+                    color: #494949;
+                }
+                .title-tip {
+                    color: #848484;
+                }
+            }
+
+            .type-box {
+                height: px2rem(40);
+                margin-top: px2rem(11);
+                display: flex;
+                justify-content: space-around;
+                .type-item {
+                    width: px2rem(114);
+                    height: px2rem(40);
+                    background: #F0F0F0;
+                    border-radius: px2rem(2);
+                    text-align: center;
+                    line-height: px2rem(40);
+                    font-family: PingFangSC-Regular;
+                    font-size: px2rem(16);
+                    color: #353535;
+                    letter-spacing: px2rem(0.19);
+                }
+                .type-item-selected {
+                    width: px2rem(114);
+                    height: px2rem(40);
+                    background: #FF7817;
+                    border-radius: px2rem(2);
+                    text-align: center;
+                    line-height: px2rem(40);
+                    font-family: PingFangSC-Regular;
+                    font-size: px2rem(16);
+                    color: #FFFFFF;
+                    letter-spacing: px2rem(0.19);
+                }
+            }
+
+        }
     }
 
 }

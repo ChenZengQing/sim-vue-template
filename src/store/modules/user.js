@@ -1,5 +1,6 @@
 import {login, logout} from '@/api/login'
-import {getName, setName, getToken, setToken, removeToken} from '@/utils/auth'
+import {getName, setName, getToken, setToken, removeToken} from '@/utils/auth';
+import Cookies from "js-cookie";
 
 
 const user = {
@@ -45,6 +46,7 @@ const user = {
                 commit('SET_TOKEN', '');
                 commit('SET_ROLES', []);
                 removeToken();
+                Cookies.remove('CHANGE_SELECTED');
                 resolve();
             })
             // return new Promise((resolve, reject) => {
