@@ -40,7 +40,7 @@
                 Indicator.open('登录中...');
                 this.$store.dispatch('Login', this.loginForm).then(() => {
                     Indicator.close();
-                    this.$router.push({path: '/'});
+                    this.$router.replace({path: '/'});
                 }).catch(() => {
                     Indicator.close();
                 })

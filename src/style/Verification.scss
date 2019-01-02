@@ -91,6 +91,7 @@
         top: px2rem(46);
         left: 0;
         z-index: 999;
+        overflow: hidden;
         .filter-container {
             display: flex;
             flex-direction: column;
@@ -137,6 +138,28 @@
                     font-size: px2rem(16);
                     color: #FFFFFF;
                     letter-spacing: px2rem(0.19);
+                }
+            }
+            .time-box {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                font-family: PingFangSC-Regular;
+                font-size: px2rem(16);
+                color: #353535;
+                letter-spacing: px2rem(0.19);
+                margin-top: px2rem(11);
+                div {
+                    font-family: PingFangSC-Regular;
+                    font-size: px2rem(14);
+                    color: #353535;
+                    letter-spacing: px2rem(0.17);
+                    text-align: center;
+                    border: 1px solid #353535;
+                    border-radius: px2rem(2);
+                    width: px2rem(150);
+                    height: px2rem(40);
+                    line-height: px2rem(40);
                 }
             }
 

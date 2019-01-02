@@ -26,7 +26,7 @@ exports.cssLoaders = function (options) {
     loader: 'postcss-loader',
     options: {
       sourceMap: options.sourceMap
-    }
+    },
   }
 
   // generate loader string to be used with extract text plugin

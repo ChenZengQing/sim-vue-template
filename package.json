@@ -19,6 +19,8 @@
     "npm": "^6.1.0",
     "nprogress": "0.2.0",
     "path-to-regexp": "^2.4.0",
+    "postcss-px2rem": "^0.3.0",
+    "precss": "^4.0.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuex": "3.0.1",

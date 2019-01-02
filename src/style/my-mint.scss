@@ -58,28 +58,29 @@ $color-primary: #FF7817;
 }
 
 
-.mint-msgbox {
-    font-size: px2rem(34);
-}
-.mint-msgbox-title {
-    font-size: px2rem(34);
-}
-.mint-msgbox-btns {
-    height: px2rem(70);
-}
-.mint-msgbox-btns button{
-    font-size: px2rem(34);
-    height: px2rem(70);
-}
-.mint-toast {
-    border-radius: px2rem(5);
+//.mint-msgbox {
+//    font-size: px2rem(34);
+//}
+//.mint-msgbox-title {
+//    font-size: px2rem(34);
+//}
+//.mint-msgbox-btns {
+//    height: px2rem(70);
+//}
+//.mint-msgbox-btns button{
+//    font-size: px2rem(34);
+//    height: px2rem(70);
+//}
+//.mint-toast {
+//    border-radius: px2rem(5);
+//
+//
+//}
+//.mint-toast-text {
+//    font-size: px2rem(30);
+//    margin: px2rem(10);
+//}
 
-
-}
-.mint-toast-text {
-    font-size: px2rem(30);
-    margin: px2rem(10);
-}
 
 .mint-button--normal {
     padding: 0 px2rem(30);
@@ -130,54 +131,41 @@ $color-primary: #FF7817;
     background: rgba(255,255,255,0.90);
 }
 
-.picker-toolbar {
-    height: px2rem(40);
-}
-
-.mint-datetime-action {
-    line-height: px2rem(40);
+.mint-loadmore-text {
     font-size: px2rem(16);
 }
-.picker-slot {
-    font-size: px2rem(16);
 
-}
-//.picker-items {
-//    height: 40vh;
+//.picker-toolbar {
+//    height: px2rem(40);
 //}
-//.picker-item {
-//    height: px2rem(30)!important;
-//    line-height: px2rem(30)!important;
+//
+//.mint-datetime-action {
+//    line-height: px2rem(40);
+//    font-size: px2rem(16);
 //}
-//.picker-center-highlight {
-//    background: #FF7817;
-//    height: px2rem(40)!important;
-//    opacity: 0.5;
-//}
-//.picker-slot-wrapper {
-//    //height: px2rem(100)!important;
-//    //transform: translate(0px, px2rem(50)) translateZ(0px)!important;
-//    background: #FF7817;
+//.picker-slot {
+//    font-size: px2rem(16);
+//
 //}
 
 /*--------选择器样式-----------*/
-.picker-items{
-    height:100%;
-}
-.picker-item{
-    font-size:0.4rem;
-    //height: px2rem(40)!important;
-    //line-height: px2rem(40)!important;
-}
-.picker-slot-center{
-    height:100%;
-}
-.picker-slot-wrapper{
-}
-.picker-center-highlight{
-    background-color: #F5F5F9;
-    z-index:-100;
-}
+//.picker-items{
+//    height:100%;
+//}
+//.picker-item{
+//    font-size:0.4rem;
+//    //height: px2rem(40)!important;
+//    //line-height: px2rem(40)!important;
+//}
+//.picker-slot-center{
+//    height:100%;
+//}
+//.picker-slot-wrapper{
+//}
+//.picker-center-highlight{
+//    background-color: #F5F5F9;
+//    z-index:-100;
+//}
 
 
 

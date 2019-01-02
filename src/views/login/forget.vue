@@ -32,7 +32,7 @@
             <mt-button v-if="type==='forget'" type="primary" @click.native="next">下一步</mt-button>
             <mt-button v-else type="primary" @click.native="submit">重设密码</mt-button>
 
-            <router-link class="back-login" :to="{name:'Login'}">返回登录</router-link>
+            <router-link class="back-login" :to="{name:'Login'}" replace>返回登录</router-link>
         </div>
     </div>
 </template>
