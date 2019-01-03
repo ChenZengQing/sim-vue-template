@@ -14,17 +14,26 @@
                 :bottom-method="loadBottom"
                 :bottom-all-loaded="allLoaded"
                 ref="loadmore">
-                <ul>
-                    <li v-for="item in list">
-                        <div class="item-left">
-                            <span class="code">0528-25AW-W7Q2</span>
-                            <span class="time">核销时间：2018-02-03 21:59:23</span>
-                        </div>
-                        <div class="item-right">
-                            <span class="type">保养券</span>
-                        </div>
-                    </li>
-                </ul>
+                <template v-if="list.length!==0">
+                    <ul>
+                        <li v-for="(item, index) in list" :key="index">
+                            <div class="item-left">
+                                <span class="code">{{item.couponCode}}</span>
+                                <span class="time">核销时间：{{item.gmtCreate}}</span>
+                            </div>
+                            <div class="item-right">
+                                <span v-if="item.couponType===1" class="type">洗车券</span>
+                                <span v-if="item.couponType===2" class="type">保养券</span>
+                                <span v-if="item.couponType===3" class="type">钣金喷漆券</span>
+                            </div>
+                        </li>
+                    </ul>
+                </template>
+                <template v-else>
+                    <div class="empty" :style="{height: (screenHeight-100) + 'px'}">
+                        <span>暂无数据</span>
+                    </div>
+                </template>
             </mt-loadmore>
 
         </div>
@@ -44,6 +53,7 @@
                             class="type-item"
                             v-for="(item, index) in filterTypeOptions"
                             :class="[item.selected?'type-item-selected':'']"
+                            :key="index"
                             @click="filterTypeSelected(index)">{{item.name}}</span>
                     </div>
                     <div class="title-box">
@@ -81,27 +91,31 @@
 
 <script>
     import '@/libs/velocity.min'
-
+    import {coupons} from '@/api/coupons';
+    import { Indicator } from 'mint-ui';
     export default {
         name: "index",
         data() {
             return {
                 topStatus: '',
                 allLoaded: false,
-                list: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                list: [],
                 screenHeight: 0,
                 isShow: false,
                 taxDate: new Date(),
                 filterTypeOptions: [
                     {
+                        value: 1,
                         name: '洗车',
                         selected: true
                     },
                     {
+                        value: 2,
                         name: '保养',
                         selected: false
                     },
                     {
+                        value: 3,
                         name: '钣金喷漆',
                         selected: false
                     },
@@ -109,15 +123,20 @@
                 pickerTimeValue: '',
                 beginTime: '',
                 endTime: '',
-                mode: 1
+                mode: 1,
+                page: 1,
+                pageSize: 10
                 // ...
             };
         },
         mounted: function () {
             //原生获取屏幕高度
-            // console.log(this.$refs.topBox.offsetHeight,document.body.clientHeight);
             this.screenHeight = document.body.clientHeight - this.$refs.topBox.offsetHeight;
-
+            Indicator.open({
+                text: '加载中...',
+                spinnerType: 'fading-circle'
+            });
+            this.getData();
 
         },
         methods: {
@@ -129,21 +148,6 @@
             },
             leaveEl(el, done) {
                 Velocity(el, {height: 0}, {duration:300 ,complete: done});
-            },
-            loadTop() {
-                // 加载更多数据
-                setTimeout(() => {
-                    this.$refs.loadmore.onTopLoaded();
-                }, 1000);
-
-            },
-            loadBottom() {
-                // 加载更多数据
-                setTimeout(() => {
-                    this.allLoaded = false;// 若数据已全部获取完毕
-                    // this.allLoaded = true;// 若数据已全部获取完毕
-                    this.$refs.loadmore.onBottomLoaded();
-                }, 1000);
             },
             filterTypeSelected(index) {
                 this.filterTypeOptions.forEach((item, i) => {
@@ -170,7 +174,41 @@
                 console.log(year, month, day);
                 let dateStr = year + '年' + month + '月' + day + '日';
                 this.mode === 1 ? this.beginTime = dateStr : this.endTime = dateStr;
-            }
+            },
+            loadTop() {
+                // 加载更多数据
+                this.page = 1;
+                this.getData();
+            },
+            loadBottom() {
+                // 加载更多数据
+                this.getData();
+            },
+            getData() {
+                coupons({
+                    beginTime: this.beginTime,
+                    couponType: this.filterTypeOptions.filter(item=>item.selected)[0].value,
+                    endTime: this.endTime,
+                    page: this.page,
+                    pageSize: this.pageSize
+                }).then(res=>{
+                    console.log(res);
+                    if (res.currentPage>=res.totalPage) {
+                        this.allLoaded = true
+                    }
+                    this.page++;
+                    this.list = res.result;
+                    this.closeLoading();
+                }).catch(err=>{
+                    console.log(err);
+                    this.closeLoading();
+                });
+            },
+            closeLoading() {
+                Indicator.close();
+                this.$refs.loadmore.onTopLoaded();
+                this.$refs.loadmore.onBottomLoaded();
+            },
         }
     }
 </script>

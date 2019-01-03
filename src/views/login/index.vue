@@ -30,7 +30,7 @@
             return {
                 captcha: '',
                 loginForm: {
-                    username: 'admin',
+                    username: '18800000000',
                     password: '123456'
                 },
             }

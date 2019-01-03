@@ -24,6 +24,7 @@
         flex-direction: column;
         align-items: center;
         flex: 1;
+        position: relative;
     }
 
 </style>

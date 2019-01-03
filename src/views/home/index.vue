@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <div class="top-box">
-            <span class="store-name">您好，三林汽修</span>
+            <span class="store-name">您好，{{garages.garageName}}</span>
             <!--<div class="store-state-box">-->
                 <!--<span>服务中</span>-->
             <!--</div>-->
@@ -22,22 +22,24 @@
 </template>
 
 <script>
-    import TabBar from '../../components/TabBar';
+
+    import WXUtils from '@/utils/WXUtils';
+    import {mapGetters} from 'vuex';
 
     export default {
         name: "index",
-        components: {
-            TabBar,
-        },
+        components: {},
         data(){
-            return {
-
-            }
+            return {}
+        },
+        computed:{
+            ...mapGetters([
+                'garages'
+            ])
         },
         methods: {
             scanQrCode(){
-                console.log(this.$wx_utils.getInstance());
-                this.$wx_utils.getInstance().scanQrCode();
+                WXUtils.scanQrCode();
 
             },
             submit() {}

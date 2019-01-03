@@ -8,7 +8,7 @@ export function login(username, password) {
         data: {
             username,
             password,
-            type: 0
+            type: 1
         }
     })
 }

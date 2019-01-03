@@ -19,8 +19,13 @@ router.beforeEach((to, from, next) => {
     if (to.meta.tabIndex !== store.getters.selected && to.meta.tabIndex !== undefined) {
         store.dispatch('ChangeTab', to.meta.tabIndex);
     }
-
     if (getToken()) { // determine if there has token
+        if (!store.getters.garagesRequested) {
+            store.dispatch('Garages').then(()=>{
+                store.dispatch('GaragesProfile');
+            });
+
+        }
         NProgress.done(); // if current page is dashboard will not trigger	afterEach hook, so manually handle it
         next();
     } else {

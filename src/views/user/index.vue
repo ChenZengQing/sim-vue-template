@@ -2,17 +2,17 @@
     <div class="user">
         <div class="top-box">
             <div class="top-box-top">
-                <span class="user-store-name">三林汽修</span>
+                <span class="user-store-name">{{garages.garageName}}</span>
                 <span class="withdraw-btn">提现</span>
             </div>
             <div class="top-box-bottom">
                 <div class="user-money-item">
                     <span class="user-money-label">账户余额(元)</span>
-                    <span class="user-money">20.00</span>
+                    <span class="user-money">{{garagesProfile.balanceAmount/100}}</span>
                 </div>
                 <div class="user-money-item">
                     <span class="user-money-label">冻结金额(元)</span>
-                    <span class="user-money">20.00</span>
+                    <span class="user-money">{{garagesProfile.frozenAmount/100}}</span>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
             <ul>
                 <li @click="$router.push({name: 'StoreInfo'})">
                     <span class="label">店铺资料</span>
-                    <span class="info">三林汽修</span>
+                    <span class="info">{{garages.garageName}}</span>
                     <img src="@/assets/icon-backarrow.png"/>
                 </li>
                 <li @click="$router.push({name: 'CapitalList'})">
@@ -30,7 +30,7 @@
                 </li>
                 <li>
                     <span class="label">服务时间</span>
-                    <span class="info">09:00-22:00</span>
+                    <span class="info">{{garagesProfile.workStartTime}}-{{garagesProfile.workEndTime}}</span>
                     <img src="@/assets/icon-backarrow.png"/>
                 </li>
             </ul>
@@ -39,21 +39,9 @@
         <div class="user-store-sever">
             <div class="title">服务项目</div>
             <ul>
-                <li>
-                    <span class="sever-item-title">洗车</span>
-                    <span class="sever-item-info">洗车现金洗车工具，洗干净。洗干净。</span>
-                </li>
-                <li>
-                    <span class="sever-item-title">洗车</span>
-                    <span class="sever-item-info">洗车现金洗车工具，洗干净。洗干净。</span>
-                </li>
-                <li>
-                    <span class="sever-item-title">洗车</span>
-                    <span class="sever-item-info">洗车现金洗车工具，洗干净。洗干净。</span>
-                </li>
-                <li>
-                    <span class="sever-item-title">洗车</span>
-                    <span class="sever-item-info">洗车现金洗车工具，洗干净。洗干净。</span>
+                <li v-for="(item, index) in garagesProfile.business" :key="index">
+                    <span class="sever-item-title">{{item.serviceType===1?'洗车':item.serviceType===2?'洗车':'钣金喷漆'}}</span>
+                    <span class="sever-item-info">{{item.serviceAbstract}}</span>
                 </li>
             </ul>
             <div class="line"></div>
@@ -62,8 +50,15 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex';
     export default {
-        name: "index"
+        name: "index",
+        computed:{
+            ...mapGetters([
+                'garages',
+                'garagesProfile',
+            ])
+        },
     }
 </script>
 

@@ -37,7 +37,9 @@
         created() {
             this.$store.dispatch('SetTabs', this.tabs);
             // this.$store.dispatch('ChangeTab', 0);
-
+        },
+        mounted: function () {
+            document.getElementById('app').style.height = document.documentElement.clientHeight + 'px';
         },
     }
 </script>

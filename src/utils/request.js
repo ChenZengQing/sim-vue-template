@@ -2,6 +2,7 @@ import axios from 'axios';
 import store from '../store';
 import {getToken} from '@/utils/auth';
 import md5 from '@/utils/md5.js';
+import { Toast } from 'mint-ui';
 
 const APP_SECRET = 'secretKey-h5';
 
@@ -49,7 +50,7 @@ service.defaults.headers['Content-Type'] = 'application/json;charset=UTF-8';
 // request拦截器
 service.interceptors.request.use(config => {
     let header = {
-        'appId': 6,// APP来源[1:物流寄货端 2:物流分拣端 3:物流发货端]
+        'appId': 8,// APP来源[1:物流寄货端 2:物流分拣端 3:物流发货端] 7:车后商户 8:车后汽修店 9:车后车主
         'platformId': 1,// [1：H5  2：Android  3：IOS]
         'token': '',// 授权凭证
         'timestamp': Date.parse(new Date()),
@@ -57,8 +58,6 @@ service.interceptors.request.use(config => {
     };
     if (store.getters.token) {
         header['token'] = getToken(); // 让每个请求携带自定义token 请根据实际情况自行修改
-        // config.headers.common['userId'] = 1;
-        // config.headers.common['logisticsId'] = 1;
     }
 
     let signObj = {};
@@ -67,6 +66,7 @@ service.interceptors.request.use(config => {
     header['sign'] = sign;
 
     config.headers.common = header;
+    config.headers.common['userId'] = '1078487240637812737';
     return config;
 }, error => {
     // Do something with request error
@@ -82,24 +82,24 @@ service.interceptors.response.use(
          */
         const res = response.data;
         if (res.code !== 0) {
-            Message({
+            Toast({
                 message: res.msg,
-                type: 'error',
-                duration: 5 * 1000
+                position: 'bottom',
+                duration: 1500
             });
 
             // 50008:非法的token; 50012:其他客户端登录了;  50014:Token 过期了;
-            if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
-                MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
-                    confirmButtonText: '重新登录',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    store.dispatch('FedLogOut').then(() => {
-                        location.reload();// 为了重新实例化vue-router对象 避免bug
-                    })
-                })
-            }
+            // if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
+            //     MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
+            //         confirmButtonText: '重新登录',
+            //         cancelButtonText: '取消',
+            //         type: 'warning'
+            //     }).then(() => {
+            //         store.dispatch('FedLogOut').then(() => {
+            //             location.reload();// 为了重新实例化vue-router对象 避免bug
+            //         })
+            //     })
+            // }
             return Promise.reject(res.msg);
         } else {
             return response.data.data;

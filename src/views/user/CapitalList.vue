@@ -6,17 +6,30 @@
                 :bottom-method="loadBottom"
                 :bottom-all-loaded="allLoaded"
                 ref="loadmore">
-                <ul>
-                    <li v-for="item in list" @click="$router.push({name: 'CapitalDetail', query: {}})">
-                        <div class="item-left">
-                            <span class="code">提现</span>
-                            <span class="time">2018-02-26 21:32:32</span>
-                        </div>
-                        <div class="item-right">
-                            <span class="type">-40.32</span>
-                        </div>
-                    </li>
-                </ul>
+                <template v-if="list.length!==0">
+                    <ul>
+                        <li
+                            v-for="(item, index) in list"
+                            @click="$router.push({name: 'CapitalDetail', query: {id: item.id}})"
+                            :key="index">
+                            <div class="item-left">
+                                <span v-if="item.changeMethod===0" class="code">提现</span>
+                                <span v-if="item.changeMethod===1" class="code">洗车</span>
+                                <span v-if="item.changeMethod===2" class="code">保养</span>
+                                <span v-if="item.changeMethod===3" class="code">钣金喷漆</span>
+                                <span class="time">{{item.gmtCreate}}</span>
+                            </div>
+                            <div class="item-right">
+                                <span class="type" :style="{color: item.szType===1?'#FF7817':''}">{{item.szType===1?'+':'-'}}{{item.changeAmount/100}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </template>
+                <template v-else>
+                    <div class="empty">
+                        <span>暂无数据</span>
+                    </div>
+                </template>
             </mt-loadmore>
         </div>
 
@@ -24,33 +37,56 @@
 </template>
 
 <script>
+    import {accountsLogs} from '@/api/accounts';
+    import { Indicator } from 'mint-ui';
     export default {
         name: "CapitalList",
         data() {
             return {
                 topStatus: '',
                 allLoaded: false,
-                list: [0,1,2,3,4,5,6,7,8,9,10,11]
-                // ...
+                list: [],
+                page: 1,
+                pageSize: 10
             };
+        },
+        created() {
+            Indicator.open({
+                text: '加载中...',
+                spinnerType: 'fading-circle'
+            });
+            this.getData();
         },
         methods: {
             loadTop() {
                 // 加载更多数据
-                setTimeout(()=>{
-                    this.$refs.loadmore.onTopLoaded();
-                },1000);
-
+                this.page = 1;
+                this.getData();
             },
             loadBottom() {
                 // 加载更多数据
-                setTimeout(()=>{
-                    this.allLoaded = false;// 若数据已全部获取完毕
-                    // this.allLoaded = true;// 若数据已全部获取完毕
-                    this.$refs.loadmore.onBottomLoaded();
-                },1000);
+                this.getData();
+            },
+            getData() {
+                accountsLogs({page: this.page,pageSize: this.pageSize}).then(res=>{
+                    console.log(res);
+                    if (res.currentPage>=res.totalPage) {
+                        this.allLoaded = true
+                    }
+                    this.page++;
+                    this.list = res.result;
+                    this.closeLoading();
+                }).catch(err=>{
+                    console.log(err);
+                    this.closeLoading();
+                });
+            },
+            closeLoading() {
+                Indicator.close();
+                this.$refs.loadmore.onTopLoaded();
+                this.$refs.loadmore.onBottomLoaded();
+            },
 
-            }
         }
     }
 </script>

@@ -13,6 +13,7 @@ import CapitalDetail from '@/views/user/CapitalDetail'
 Vue.use(Router);
 
 export default new Router({
+    mode: 'history',
     routes: [
         {
             path: '/',

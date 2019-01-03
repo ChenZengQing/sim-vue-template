@@ -10,11 +10,9 @@ import store from './store'
 import './style/my-mint.scss';
 import '@/permission' // permission control
 
-import WXUtils from './utils/WXUtils'
 
 Vue.use(Log);
 Vue.use(MintUI);
-Vue.use(WXUtils);
 
 Vue.config.productionTip = false;
 
