@@ -74,6 +74,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
             .line {
                 background: #D3D3D3;
                 width: px2rem(10);

@@ -14,6 +14,7 @@ import '@/permission' // permission control
 Vue.use(Log);
 Vue.use(MintUI);
 
+
 Vue.config.productionTip = false;
 
 // px2rem

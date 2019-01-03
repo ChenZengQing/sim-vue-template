@@ -15,6 +15,9 @@
                     <span class="user-money">{{garagesProfile.frozenAmount/100}}</span>
                 </div>
             </div>
+            <div class="top-tip">
+                <span>上月订单金额将于次月10日解冻，解冻后可操作提现</span>
+            </div>
         </div>
         <div class="user-store-info">
             <ul>

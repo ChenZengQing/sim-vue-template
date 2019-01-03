@@ -6,7 +6,7 @@ export function coupons(data) {
 }
 
 // 核销兑换码
-export function couponsLogs(coupon_code) {
+export function couponsCode(coupon_code) {
     return request.put(`/garage/coupons/${coupon_code}`)
 }
 
