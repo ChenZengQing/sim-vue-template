@@ -28,7 +28,7 @@
                     <span class="info"></span>
                     <img src="@/assets/icon-backarrow.png"/>
                 </li>
-                <li>
+                <li @click="$router.push({name: 'ServeTime'})">
                     <span class="label">服务时间</span>
                     <span class="info">{{garagesProfile.workStartTime}}-{{garagesProfile.workEndTime}}</span>
                     <img src="@/assets/icon-backarrow.png"/>

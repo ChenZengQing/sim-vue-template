@@ -92,13 +92,14 @@
 <script>
     import '@/libs/velocity.min'
     import {coupons} from '@/api/coupons';
-    import { Indicator } from 'mint-ui';
+    import {Indicator} from 'mint-ui';
+
     export default {
         name: "index",
         data() {
             return {
                 topStatus: '',
-                allLoaded: false,
+                allLoaded: true,
                 list: [],
                 screenHeight: 0,
                 isShow: false,
@@ -132,22 +133,23 @@
         mounted: function () {
             //原生获取屏幕高度
             this.screenHeight = document.body.clientHeight - this.$refs.topBox.offsetHeight;
+        },
+        created() {
             Indicator.open({
                 text: '加载中...',
                 spinnerType: 'fading-circle'
             });
             this.getData();
-
         },
         methods: {
             beforeEnter: (el) => {
                 el.style.height = 0;
             },
             enterEl(el, done) {
-                Velocity(el, {height: this.screenHeight}, {duration:300 ,complete: done});
+                Velocity(el, {height: this.screenHeight}, {duration: 300, complete: done});
             },
             leaveEl(el, done) {
-                Velocity(el, {height: 0}, {duration:300 ,complete: done});
+                Velocity(el, {height: 0}, {duration: 300, complete: done});
             },
             filterTypeSelected(index) {
                 this.filterTypeOptions.forEach((item, i) => {
@@ -178,28 +180,33 @@
             loadTop() {
                 // 加载更多数据
                 this.page = 1;
+                console.log('loadTop');
                 this.getData();
             },
             loadBottom() {
                 // 加载更多数据
+                console.log('loadBottom');
                 this.getData();
+
             },
             getData() {
                 coupons({
                     beginTime: this.beginTime,
-                    couponType: this.filterTypeOptions.filter(item=>item.selected)[0].value,
+                    couponType: this.filterTypeOptions.filter(item => item.selected)[0].value,
                     endTime: this.endTime,
                     page: this.page,
                     pageSize: this.pageSize
-                }).then(res=>{
+                }).then(res => {
                     console.log(res);
-                    if (res.currentPage>=res.totalPage) {
-                        this.allLoaded = true
+                    if (res.currentPage >= res.totalPage) {
+                        this.allLoaded = true;
+                    } else {
+                        this.allLoaded = false;
                     }
                     this.page++;
                     this.list = res.result;
                     this.closeLoading();
-                }).catch(err=>{
+                }).catch(err => {
                     console.log(err);
                     this.closeLoading();
                 });

@@ -9,6 +9,8 @@ import User from '@/views/user/index'
 import StoreInfo from '@/views/user/StoreInfo'
 import CapitalList from '@/views/user/CapitalList'
 import CapitalDetail from '@/views/user/CapitalDetail'
+import ServeTime from '@/views/user/ServeTime'
+import SetTime from '@/views/user/SetTime'
 
 Vue.use(Router);
 
@@ -86,6 +88,22 @@ export default new Router({
             component: CapitalDetail,
             meta: {
                 title: '流水详情'
+            }
+        },
+        {
+            path: '/serveTime',
+            name: 'ServeTime',
+            component: ServeTime,
+            meta: {
+                title: '服务时间'
+            }
+        },
+        {
+            path: '/setTime',
+            name: 'SetTime',
+            component: SetTime,
+            meta: {
+                title: '设置时间'
             }
         },
 

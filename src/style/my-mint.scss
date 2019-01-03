@@ -20,8 +20,8 @@ $color-primary: #FF7817;
     background-color: $color-primary
 }
 .mint-switch-input:checked + .mint-switch-core {
-    border-color: $color-primary;
-    background-color: $color-primary;
+    border-color: #61BE57;
+    background-color: #61BE57;
 }
 .mint-navbar .mint-tab-item.is-selected {
     border-bottom: 3px solid $color-primary;
@@ -169,6 +169,31 @@ $color-primary: #FF7817;
 //    z-index:-100;
 //}
 
+
+.set-time-container {
+    .picker-item {
+        font-size: px2rem(20);
+        color: #E3E3E3;
+        font-weight: bold;
+    }
+    .picker-selected {
+        color: #000000;
+    }
+    .picker-slot-divider {
+        div {
+            width: px2rem(40);
+            text-align: center;
+        }
+
+    }
+    .picker-center-highlight {
+        background: #E3E3E3;
+        opacity: 0.5;
+    }
+    .picker-center-highlight:before, .picker-center-highlight:after {
+        background-color: #E3E3E3;
+    }
+}
 
 
 
