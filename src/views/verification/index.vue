@@ -141,6 +141,13 @@
             });
             this.getData();
         },
+        watch: {
+            isShow(val) {
+                if (!val) {
+                    this.loadTop();
+                }
+            }
+        },
         methods: {
             beforeEnter: (el) => {
                 el.style.height = 0;
@@ -174,7 +181,7 @@
                 let month = data.getMonth() + 1 < 10 ? '0' + (data.getMonth() + 1) : data.getMonth() + 1;
                 let day = data.getDate() < 10 ? '0' + data.getDate() : data.getDate();
                 console.log(year, month, day);
-                let dateStr = year + '年' + month + '月' + day + '日';
+                let dateStr = year + '-' + month + '-' + day;
                 this.mode === 1 ? this.beginTime = dateStr : this.endTime = dateStr;
             },
             loadTop() {

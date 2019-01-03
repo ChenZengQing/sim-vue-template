@@ -22,7 +22,7 @@ export function garagesWorkStatusPut(status) {
 
 // 开关自动切换工作状态
 export function garagesWorkSwitchPut(status) {
-    return request.put('/garage/garages/work/switch',{status})
+    return request.put(`/garage/garages/work/switch?status=${status}`)
 }
 
 // 设置服务时间

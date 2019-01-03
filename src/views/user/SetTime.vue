@@ -3,33 +3,39 @@
         <div class="top-box">
 
         </div>
-        <div class="time-box current">
-            <span>从 09:00</span>
+        <div class="time-box" :class="[current===1?'current':'']" @click="current=1">
+            <span>从 {{startTime[0]+':'+startTime[1]}}</span>
         </div>
-        <div class="time-box">
-            <span>至 23:00</span>
+        <div class="time-box" :class="[current===2?'current':'']" @click="current=2">
+            <span>至 {{endTime[0]+':'+endTime[1]}}</span>
         </div>
 
         <div class="time-picker-box">
-            <mt-picker :slots="slots" @change="onValuesChange"></mt-picker>
+            <mt-picker ref="timePicker" :slots="slots" @change="onValuesChange"></mt-picker>
         </div>
 
     </div>
 </template>
 
 <script>
+    import {mapGetters} from 'vuex';
+    import {garagesWorkTimePut} from '@/api/garage'
+
     export default {
         name: "SetTime",
         data() {
             return {
-                value: ['00','00'],
+                startTime: ['00','00'],
+                endTime: ['00','00'],
                 lastHour: '00',
+                current: 1,
                 slots: [
                     {
                         flex: 1,
                         values: [],
                         className: 'slot1',
-                        textAlign: 'right'
+                        textAlign: 'right',
+                        value: 4
                     }, {
                         divider: true,
                         content: ':',
@@ -43,20 +49,59 @@
                 ]
             }
         },
+        computed:{
+            ...mapGetters([
+                'garagesProfile',
+            ])
+        },
+        watch: {
+            current(val, oldVal) {
+                if (val === 1) {
+                    this.$refs.timePicker.setValues(this.startTime);
+                } else {
+                    this.$refs.timePicker.setValues(this.endTime);
+                }
+            },
+        },
         created() {
             this.getHours();
             this.getMinutes();
         },
-        mounted() {},
+        mounted() {
+            let startTime = this.garagesProfile.workStartTime.split(':');
+            this.startTime = startTime;
+            let endTime = this.garagesProfile.workEndTime.split(':');
+            this.endTime = endTime;
+            this.$refs.timePicker.setValues(startTime);
+        },
+        beforeDestroy() {
+            console.log('beforeDestroy',this.startTime,this.endTime);
+            let beginTimeStr = this.startTime[0]+':'+this.startTime[1];
+            let endTimeStr = this.endTime[0]+':'+this.endTime[1];
+            garagesWorkTimePut({
+                beginTime: beginTimeStr,
+                endTime: endTimeStr
+            }).then(res=>{
+                console.log(res);
+                this.garagesProfile.workStartTime = beginTimeStr;
+                this.garagesProfile.workEndTime = endTimeStr;
+            }).catch(err=>{
+                console.log(err)
+            })
+        },
         methods: {
             onValuesChange(picker, values) {
-                this.value = values;
-                if (values[0] !== this.lastHour) {
-                    this.lastHour = values[0];
-                    picker.setSlotValue(1, '00');
-                }
-                // if (values[0] > values[1]) {
-                //     picker.setSlotValue(1, values[0]);
+                console.log('onValuesChange',this.current);
+                setTimeout(()=>{
+                    if (this.current === 1) {
+                        this.startTime = [...values];
+                    } else {
+                        this.endTime = [...values];
+                    }
+                }, 200);
+                // if (values[0] !== this.lastHour) {
+                //     this.lastHour = values[0];
+                //     picker.setSlotValue(1, '00');
                 // }
             },
             getHours() {

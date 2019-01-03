@@ -59,6 +59,7 @@
                 'garagesProfile',
             ])
         },
+
     }
 </script>
 
