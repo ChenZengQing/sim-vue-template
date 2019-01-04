@@ -127,7 +127,8 @@
                 endTime: '',
                 mode: 1,
                 page: 1,
-                pageSize: 10
+                pageSize: 10,
+                loading: false
                 // ...
             };
         },
@@ -198,28 +199,38 @@
 
             },
             getData() {
-                coupons({
-                    beginTime: this.beginTime,
-                    couponType: this.filterTypeOptions.filter(item => item.selected)[0].value,
-                    endTime: this.endTime,
-                    page: this.page,
-                    pageSize: this.pageSize
-                }).then(res => {
-                    console.log(res);
-                    if (res.currentPage >= res.totalPage) {
-                        this.allLoaded = true;
-                    } else {
-                        this.allLoaded = false;
-                    }
-                    this.page++;
-                    this.list = res.result;
-                    this.closeLoading();
-                }).catch(err => {
-                    console.log(err);
-                    this.closeLoading();
-                });
+                if (!this.loading) {
+                    this.loading = true;
+                    coupons({
+                        beginTime: this.beginTime,
+                        couponType: this.filterTypeOptions.filter(item => item.selected)[0].value,
+                        endTime: this.endTime,
+                        page: this.page,
+                        pageSize: this.pageSize
+                    }).then(res => {
+                        console.log(res);
+                        if (res.currentPage >= res.totalPage) {
+                            this.allLoaded = true;
+                        } else {
+                            this.allLoaded = false;
+                        }
+                        if (this.page === 1) {
+                            this.list = res.result;
+                        } else {
+                            this.list = [...this.list,...res.result];
+                        }
+                        this.page++;
+
+                        this.closeLoading();
+                    }).catch(err => {
+                        console.log(err);
+                        this.closeLoading();
+                    });
+                }
+
             },
             closeLoading() {
+                this.loading = false;
                 Indicator.close();
                 this.$refs.loadmore.onTopLoaded();
                 this.$refs.loadmore.onBottomLoaded();

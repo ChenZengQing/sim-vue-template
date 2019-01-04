@@ -3,6 +3,7 @@ import store from '../store';
 import {getToken} from '@/utils/auth';
 import md5 from '@/utils/md5.js';
 import { Toast } from 'mint-ui';
+import router from '../router';
 
 const APP_SECRET = 'secretKey-h5';
 
@@ -107,7 +108,13 @@ service.interceptors.response.use(
     },
     error => {
 
-        console.log('err' + error);// for debug
+        console.log('err' , error);// for debug
+        if (error.response.status === 401) {
+            // 401 说明 token 验证失败
+            // 可以直接跳转到登录页面，重新登录获取 token
+            router.push({name: 'Login'});
+            // location.href = '/login';
+        }
         // Message({
         //     message: error.message,
         //     type: 'error',

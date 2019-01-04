@@ -47,7 +47,8 @@
                 allLoaded: false,
                 list: [],
                 page: 1,
-                pageSize: 10
+                pageSize: 10,
+                loading: false,
             };
         },
         created() {
@@ -68,20 +69,25 @@
                 this.getData();
             },
             getData() {
-                accountsLogs({page: this.page,pageSize: this.pageSize}).then(res=>{
-                    console.log(res);
-                    if (res.currentPage>=res.totalPage) {
-                        this.allLoaded = true
-                    }
-                    this.page++;
-                    this.list = res.result;
-                    this.closeLoading();
-                }).catch(err=>{
-                    console.log(err);
-                    this.closeLoading();
-                });
+                if (!this.loading) {
+                    this.loading = true;
+                    accountsLogs({page: this.page,pageSize: this.pageSize}).then(res=>{
+                        console.log(res);
+                        if (res.currentPage>=res.totalPage) {
+                            this.allLoaded = true
+                        }
+                        this.page++;
+                        this.list = res.result;
+                        this.closeLoading();
+                    }).catch(err=>{
+                        console.log(err);
+                        this.closeLoading();
+                    });
+                }
+
             },
             closeLoading() {
+                this.loading = false;
                 Indicator.close();
                 this.$refs.loadmore.onTopLoaded();
                 this.$refs.loadmore.onBottomLoaded();
