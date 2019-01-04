@@ -22,9 +22,10 @@
                                 <span class="time">核销时间：{{item.gmtCreate}}</span>
                             </div>
                             <div class="item-right">
-                                <span v-if="item.couponType===1" class="type">洗车券</span>
-                                <span v-if="item.couponType===2" class="type">保养券</span>
-                                <span v-if="item.couponType===3" class="type">钣金喷漆券</span>
+                                <!--<span v-if="item.couponType===1" class="type">洗车券</span>-->
+                                <!--<span v-if="item.couponType===2" class="type">保养券</span>-->
+                                <!--<span v-if="item.couponType===3" class="type">钣金喷漆券</span>-->
+                                <span class="type">{{item.couponName}}</span>
                             </div>
                         </li>
                     </ul>

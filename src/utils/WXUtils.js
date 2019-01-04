@@ -1,38 +1,23 @@
 import wx from 'weixin-js-sdk'
-import request from './request'
+import {createJsApiSignature} from '../api/wx'
 
 export default {
     scanQrCode: () => {
-
-
-        //      debug: false,
-        //       appId: ,
-        //       timestamp: ,
-        //       nonceStr: ,
-        //       signature: ,
+        console.log(location.href);
+        createJsApiSignature(location.href).then(res=>{
+            console.log(res);
+            alert(JSON.stringify(res));
             wx.config({
-                debug: true, // 开启调试模式,
-                appId: 'wxf8b4f85f3a794e77', // 必填，企业号的唯一标识，此处填写企业号corpid
-                timestamp: 1546428340, // 必填，生成签名的时间戳
-                nonceStr: 'EynBn9VLU8vd4R4t', // 必填，生成签名的随机串
-                signature: 'c63f9844002c7fb139e9921cd7c46d6f706445c9',// 必填，签名，见附录1
+                debug: false, // 开启调试模式,
+                appId: res.appId, // 必填，企业号的唯一标识，此处填写企业号corpid
+                timestamp: res.timestamp, // 必填，生成签名的时间戳
+                nonceStr: res.nonceStr, // 必填，生成签名的随机串
+                signature: res.signature,// 必填，签名，见附录1
                 jsApiList: ['scanQRCode'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
-
-
-        // request.post(
-        //     'http://my.service.com/index.php/opcode/6002',
-        //     { url:location.href.split('#')[0] } //向服务端提供授权url参数，并且不需要#后面的部分
-        // ).then((res)=> {
-        //     wx.config({
-        //         debug: true, // 开启调试模式,
-        //         appId: res.appId, // 必填，企业号的唯一标识，此处填写企业号corpid
-        //         timestamp: res.timestamp, // 必填，生成签名的时间戳
-        //         nonceStr: res.nonceStr, // 必填，生成签名的随机串
-        //         signature: res.signature,// 必填，签名，见附录1
-        //         jsApiList: ['scanQRCode'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-        //     });
-        // });
+        }).catch(err=>{
+            console.log(err)
+        });
         wx.error(function (res) {
             alert("出错了：" + res.errMsg);//这个地方的好处就是wx.config配置错误，会弹出窗口哪里错误，然后根据微信文档查询即可。
         });
@@ -49,7 +34,7 @@ export default {
                 success: function (res) {
                     var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
                     alert("扫描结果：" + result);
-                    window.location.href = result;//因为我这边是扫描后有个链接，然后跳转到该页面
+                    // window.location.href = result;//因为我这边是扫描后有个链接，然后跳转到该页面
                 }
             });
         });
