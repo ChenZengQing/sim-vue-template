@@ -103,7 +103,7 @@ module.exports = {
          */
         assetsPublicPath: '/garage/', // If you are deployed on the root path, please use '/'
 
-        proxyTable: proxyTable,
+        // proxyTable: proxyTable,
         /**
          * Source Maps
          */
@@ -129,7 +129,7 @@ module.exports = {
         assetsRoot: path.resolve(__dirname, '../testDist'),
         assetsSubDirectory: 'static',
         assetsPublicPath: '/garage/',
-        proxyTable: proxyTable,
+        // proxyTable: proxyTable,
         /**
          * Source Maps
          */
@@ -156,6 +156,7 @@ module.exports = {
         assetsRoot: path.resolve(__dirname, '../preview'),
         assetsSubDirectory: 'static',
         assetsPublicPath: '/garage/',
+        // proxyTable: proxyTable,
         /**
          * Source Maps
          */

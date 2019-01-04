@@ -40,7 +40,7 @@ function makeSign(obj) {
 
 // 创建axios实例
 const service = axios.create({
-    // baseURL: process.env.BASE_API,
+    baseURL: process.env.BASE_API,
     timeout: 10000,// 请求超时时间
     responseType: "json",
     withCredentials: true, // 是否允许带cookie这些
