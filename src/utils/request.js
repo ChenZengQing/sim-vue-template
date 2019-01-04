@@ -66,7 +66,7 @@ service.interceptors.request.use(config => {
     header['sign'] = sign;
 
     config.headers.common = header;
-    config.headers.common['userId'] = '1078487240637812737';
+    // config.headers.common['userId'] = '1078487240637812737';
     return config;
 }, error => {
     // Do something with request error

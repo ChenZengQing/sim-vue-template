@@ -6,16 +6,16 @@ const path = require('path');
 
 const proxyTable = {
         '/ucenter': {
-            target: 'http://192.168.254.183:8296/ucenter',  //目标接口域名
-            // target: 'http://172.16.6.1:8080/ucenter',  //目标接口域名
+            // target: 'http://192.168.254.183:8296/ucenter',  //目标接口域名
+            target: 'http://172.16.6.1:8080/ucenter',  //目标接口域名
             changeOrigin: true,  //是否跨域
             pathRewrite: {
                 '^/ucenter': '/'   //重写接口
             }
         },
         '/garage': {
-            target: 'http://192.168.254.183:8902/garage',  //目标接口域名
-            // target: 'http://172.16.6.1:8080/garage',  //目标接口域名
+            // target: 'http://192.168.254.183:8902/garage',  //目标接口域名
+            target: 'http://172.16.6.1:8080/garage',  //目标接口域名
             changeOrigin: true,  //是否跨域
             pathRewrite: {
                 '^/garage': '/'   //重写接口
