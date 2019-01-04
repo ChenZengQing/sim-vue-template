@@ -51,6 +51,14 @@
                 if (this.couponCode) {
                     couponsCode(this.couponCode).then(res=>{
                         console.log(res);
+                        if (res) {
+                            Toast({
+                                message: '核销成功',
+                                position: 'bottom',
+                                duration: 1500
+                            });
+                            this.couponCode = '';
+                        }
                     }).catch(err=>{
                         console.log(err);
                     });
