@@ -66,7 +66,7 @@
     }
 </script>
 
-<style lang="scss" scoped src="@/style/user.scss">
+<style lang="scss" scoped src="../../style/user.scss">
 
 </style>
 
