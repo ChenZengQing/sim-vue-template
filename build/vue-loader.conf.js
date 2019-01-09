@@ -16,20 +16,20 @@ module.exports = {
     sourceMap: sourceMapEnabled,
     extract: isProduction
   }),
-    postcss:[
-        precss(),
-        autoprefixer({
-            browsers: [
-                'last 10 Chrome versions',
-                'last 5 Firefox versions',
-                'Safari >= 6',
-                'ie > 8'
-            ]
-        }),
-        pxtorem({
-            remUnit: 37.5 //设计尺寸的1/10
-        })
-    ],
+  postcss: [
+    precss(),
+    autoprefixer({
+      browsers: [
+        'last 10 Chrome versions',
+        'last 5 Firefox versions',
+        'Safari >= 6',
+        'ie > 8'
+      ]
+    }),
+    pxtorem({
+      remUnit: 37.5 //设计尺寸的1/10
+    })
+  ],
 
   cssSourceMap: sourceMapEnabled,
   cacheBusting: config.dev.cacheBusting,

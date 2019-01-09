@@ -1,6 +1,6 @@
-# keep-car
+# sim-vue-template
 
-> 养车家
+> 基于 vue 2.0 项目模板
 
 ## Build Setup
 

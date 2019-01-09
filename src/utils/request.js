@@ -20,9 +20,7 @@ function makeSign(obj) {
     let arr = Object.keys(obj);
     arr.sort();
     for (let i in arr) {
-        // console.log(arr[i] + '',obj[arr[i]], (obj[arr[i]] + '') !== '');
         if ((obj[arr[i]] + '') !== '' || typeof obj[arr[i]]==='object') {
-            // console.log(arr[i] + '');
             if (typeof obj[arr[i]]==='object') {
                 str += arr[i] + '=' + JSON.stringify(obj[arr[i]]) + '&';
             } else {
@@ -51,8 +49,7 @@ service.defaults.headers['Content-Type'] = 'application/json;charset=UTF-8';
 // request拦截器
 service.interceptors.request.use(config => {
     let header = {
-        'appId': 8,// APP来源[1:物流寄货端 2:物流分拣端 3:物流发货端] 7:车后商户 8:车后汽修店 9:车后车主
-        'platformId': 1,// [1：H5  2：Android  3：IOS]
+        // 自定义 headers
         'token': '',// 授权凭证
         'timestamp': Date.parse(new Date()),
         'version':'1.0.0', // 版本号
@@ -61,13 +58,13 @@ service.interceptors.request.use(config => {
         header['token'] = getToken(); // 让每个请求携带自定义token 请根据实际情况自行修改
     }
 
+    // 加密
     let signObj = {};
     Object.assign(signObj, header, config.data, config.params);
     let sign = makeSign(signObj);
     header['sign'] = sign;
 
     config.headers.common = header;
-    // config.headers.common['userId'] = '1078487240637812737';
     return config;
 }, error => {
     // Do something with request error

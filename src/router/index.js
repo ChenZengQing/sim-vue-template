@@ -1,22 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Layout from '@/views/layout/index'
 import Home from '@/views/home/index'
 import Login from '@/views/login/index'
-import ForGet from '@/views/login/forget'
-import Layout from '@/views/layout/index'
-import Verification from '@/views/verification/index'
-import User from '@/views/user/index'
-import StoreInfo from '@/views/user/StoreInfo'
-import CapitalList from '@/views/user/CapitalList'
-import CapitalDetail from '@/views/user/CapitalDetail'
-import ServeTime from '@/views/user/ServeTime'
-import SetTime from '@/views/user/SetTime'
 
 Vue.use(Router);
 
 export default new Router({
     mode: 'history',
-    base: '/garage/',
+    base: '/',
     routes: [
         {
             path: '/',
@@ -33,80 +25,12 @@ export default new Router({
                         tabIndex: 0,
                     }
                 },
-                {
-                    path: '/verification',
-                    name: 'Verification',
-                    component: Verification,
-                    meta: {
-                        title: '核销记录',
-                        tabIndex: 1,
-                    }
-                },
-                {
-                    path: '/user',
-                    name: 'User',
-                    component: User,
-                    meta: {
-                        title: '我的',
-                        tabIndex: 2,
-                    }
-                },
-
             ]
         },
         {
             path: '/login',
             name: 'Login',
             component: Login
-        },
-        {
-            path: '/forget',
-            name: 'ForGet',
-            component: ForGet,
-            meta: {
-                title: '找回密码'
-            }
-        },
-        {
-            path: '/storeInfo',
-            name: 'StoreInfo',
-            component: StoreInfo,
-            meta: {
-                title: '店铺资料'
-            }
-        },
-        {
-            path: '/capitalList',
-            name: 'CapitalList',
-            component: CapitalList,
-            meta: {
-                title: '资金流水'
-            }
-        },
-        {
-            path: '/capitalDetail',
-            name: 'CapitalDetail',
-            component: CapitalDetail,
-            meta: {
-                title: '流水详情'
-            }
-        },
-        {
-            path: '/serveTime',
-            name: 'ServeTime',
-            component: ServeTime,
-            meta: {
-                title: '服务时间'
-            }
-        },
-        {
-            path: '/setTime',
-            name: 'SetTime',
-            component: SetTime,
-            meta: {
-                title: '设置时间'
-            }
-        },
-
+        }
     ]
 })

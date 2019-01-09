@@ -1,15 +1,6 @@
 import Cookies from 'js-cookie'
 
-const TokenKey = 'KeepCar-Token';
-const NameKey = 'KeepCar-Name';
-
-export function getName() {
-    return Cookies.get(NameKey);
-}
-
-export function setName(name) {
-    return Cookies.set(NameKey, name);
-}
+const TokenKey = 'Sim-Token';
 
 export function getToken() {
     return Cookies.get(TokenKey);

@@ -1,100 +1,10 @@
 @import 'px2rem.scss';
 
-input {
-    border: 1px solid #D3D3D3;
-    width: px2rem(100);
-    height: px2rem(48);
-    border-radius: px2rem(4);
-    font-family: PingFangSC-Regular;
-    font-size: px2rem(24);
-    color: #353535;
-    letter-spacing: px2rem(2);
-    text-align: center;
-}
-input::-webkit-input-placeholder { /* WebKit browsers */
-    color: #D3D3D3;
-}
-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: #D3D3D3;
-}
-input::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: #D3D3D3;
-}
-input:-ms-input-placeholder { /* Internet Explorer 10+ */
-    color: #D3D3D3;
-}
-
-
-
 .home {
     display: flex;
     flex-direction: column;
     flex: 1;
     width: 100%;
     margin-bottom: px2rem(65);
-    .top-box {
-        padding-top: px2rem(25);
-        margin-left: px2rem(15);
-        margin-right: px2rem(15);
-        display: flex;
-        .store-name {
-            font-family: PingFangSC-Medium;
-            font-size: px2rem(24);
-            color: #353535;
-            letter-spacing: px2rem(0.29);
-            line-height: px2rem(28);
-            flex: 1;
-        }
-        .store-state-box {
-            font-family: PingFangSC-Regular;
-            font-size: px2rem(16);
-            color: #FF7817;
-            letter-spacing: px2rem(0.19);
-            text-align: right;
-            line-height: px2rem(18);
-        }
-    }
-    .content {
-        margin: px2rem(34) px2rem(15) 0 px2rem(15);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        .title {
-            padding-bottom: px2rem(15);
-            font-family: PingFangSC-Regular;
-            font-size: px2rem(16);
-            color: #848484;
-            letter-spacing: px2rem(0.19);
-            line-height: px2rem(20);
-            display: block;
-            width: 100%;
-
-        }
-        .code-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            .line {
-                background: #D3D3D3;
-                width: px2rem(10);
-                height: 1px;
-            }
-
-        }
-
-        .mint-button--primary {
-            width: 100%;
-            margin-top: px2rem(30);
-            height: px2rem(48);
-        }
-
-        .scan-btn {
-            width: px2rem(142);
-            height: px2rem(142);
-            margin-top: px2rem(29);
-        }
-    }
-
-
+    text-align: center;
 }
