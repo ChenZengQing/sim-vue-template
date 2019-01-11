@@ -4,56 +4,13 @@
 
 const path = require('path');
 
-const proxyTable = {
-        '/ucenter': {
-            // target: 'http://192.168.254.183:8296/ucenter',  //目标接口域名
-            target: 'http://172.16.6.1:8080/ucenter',  //目标接口域名
-            changeOrigin: true,  //是否跨域
-            pathRewrite: {
-                '^/ucenter': '/'   //重写接口
-            }
-        },
-        '/garage': {
-            // target: 'http://192.168.254.183:8902/garage',  //目标接口域名
-            target: 'http://172.16.6.1:8080/garage',  //目标接口域名
-            changeOrigin: true,  //是否跨域
-            pathRewrite: {
-                '^/garage': '/'   //重写接口
-            }
-        },
-        '/base': {
-            target: 'http://172.16.6.1:8080/base',  //目标接口域名
-            changeOrigin: true,  //是否跨域
-            pathRewrite: {
-                '^/base': '/'   //重写接口
-            }
-        },
-        '/admin': {
-            target: 'http://172.16.6.1:8080/admin',  //目标接口域名
-            changeOrigin: true,  //是否跨域
-            pathRewrite: {
-                '^/admin': '/'   //重写接口
-            }
-        },
-        '/logistics-saas': {
-            // target: 'http://192.168.254.202:8900/logistics-saas',  // 罗勇
-            target: 'http://172.16.6.1:8080/logistics-saas',  //目标接口域名
-            changeOrigin: true,  //是否跨域
-            pathRewrite: {
-                '^/logistics-saas': '/'   //重写接口
-            }
-        },
-    };
-
 module.exports = {
     dev: {
         // Paths
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
-        proxyTable: proxyTable,
 
         // Various Dev Server settings
-        // host: '192.168.255.90', // can be overwritten by process.env.HOST
         host: 'localhost', // can be overwritten by process.env.HOST
         port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
         autoOpenBrowser: true,
@@ -101,7 +58,7 @@ module.exports = {
          * then assetsPublicPath should be set to "/bar/".
          * In most cases please use '/' !!!
          */
-        assetsPublicPath: '/garage/', // If you are deployed on the root path, please use '/'
+        assetsPublicPath: '/', // If you are deployed on the root path, please use '/'
 
         // proxyTable: proxyTable,
         /**
@@ -128,7 +85,7 @@ module.exports = {
         // Paths
         assetsRoot: path.resolve(__dirname, '../testDist'),
         assetsSubDirectory: 'static',
-        assetsPublicPath: '/garage/',
+        assetsPublicPath: '/',
         // proxyTable: proxyTable,
         /**
          * Source Maps
@@ -155,7 +112,7 @@ module.exports = {
         // Paths
         assetsRoot: path.resolve(__dirname, '../preview'),
         assetsSubDirectory: 'static',
-        assetsPublicPath: '/garage/',
+        assetsPublicPath: '/',
         // proxyTable: proxyTable,
         /**
          * Source Maps
