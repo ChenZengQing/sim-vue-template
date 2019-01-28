@@ -21,8 +21,7 @@ export default new Router({
                     name: 'Home',
                     component: Home,
                     meta: {
-                        title: '兑换券核销',
-                        tabIndex: 0,
+                        title: '首页',
                     }
                 },
             ]
@@ -30,7 +29,10 @@ export default new Router({
         {
             path: '/login',
             name: 'Login',
-            component: Login
+            component: Login,
+            meta: {
+                title: '登录',
+            }
         }
     ]
 })
